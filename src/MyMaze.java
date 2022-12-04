@@ -204,6 +204,7 @@ public class MyMaze{
             endRow = Integer.parseInt(inputs[3]);
         }
         MyMaze maze = new MyMaze(rows,cols,startRow,endRow);
-        maze.makeMaze(rows,cols,startRow,endRow).printMaze();
+        MyMaze userMaze = maze.makeMaze(rows,cols,startRow,endRow);
+        userMaze.solveMaze();
     }
 }
