@@ -214,58 +214,33 @@ public class MyMaze{
         //inner content of the maze
         for (int j=0;j<row;j++){
             if (j==startRow){
-                output += "  ";
-                for (int k=0;k<col;k++){
-                    if (maze[j][k].getVisited()){
-                        output += " * ";
-                    }
-                    else {
-                        output += " ";
-                    }
-                    if (maze[j][k].getRight()){
-                        output += " | ";
-                    }
-                    else{
-                        output += " ";
-                    }
-                }
-                output += "\n";
-                output += "|";
-                for (int p=0;p<col;p++){
-                    if (maze[j][p].getBottom()){
-                        output += "---|";
-                    }
-                    else{
-                        output += "   |";
-                    }
-                }
+                output += " ";
             }
             else{
-                output += "| ";
-                for (int k=0;k<col;k++){
-                    if (maze[j][k].getVisited()){
-                        output += "*";
-                    }
-                    else {
-                        output += " ";
-                    }
-                    if (maze[j][k].getRight()){
-                        output += " | ";
-                    }
-                    else{
-                        output += " ";
-                    }
-
-                }
-                output += "\n";
                 output += "|";
-                for (int p=0;p<col;p++){
-                    if (maze[j][p].getBottom()){
-                        output += "---|";
-                    }
-                    else{
-                        output += "   |";
-                    }
+            }
+            for (int k=0;k<col;k++){
+                if (maze[j][k].getVisited()){
+                    output += " * ";
+                }
+                else {
+                    output += "   ";
+                }
+                if (maze[j][k].getRight()){
+                    output += "|";
+                }
+                else{
+                    output += " ";
+                }
+            }
+            output += "\n";
+            output += "|";
+            for (int p=0;p<col;p++){
+                if (maze[j][p].getBottom()){
+                    output += "---|";
+                }
+                else{
+                    output += "   |";
                 }
             }
             output += "\n";
@@ -326,8 +301,6 @@ public class MyMaze{
 
     public static void main(String[] args){
         MyMaze maze = new MyMaze(5,20,1,2);
-        maze.makeMaze(5,20,1,2);
-        maze.solveMaze();
-        /*Make and solve maze */
+        maze.makeMaze(5,20,1,2).printMaze();
     }
 }
