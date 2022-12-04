@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c40e29f3-8f3f-4e68-b965-6b04110ba9f8" name="Changes" comment="">
+    <list default="true" id="c40e29f3-8f3f-4e68-b965-6b04110ba9f8" name="Changes" comment="solve maze added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MyMaze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MyMaze.java" afterDir="false" />
     </list>
@@ -40,6 +40,14 @@
       <option name="presentableId" value="Default" />
       <updated>1670013214067</updated>
     </task>
+    <task id="LOCAL-00001" summary="solve maze added">
+      <created>1670182527126</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1670182527126</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -52,5 +60,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="solve maze added" />
+    <option name="LAST_COMMIT_MESSAGE" value="solve maze added" />
   </component>
 </project>

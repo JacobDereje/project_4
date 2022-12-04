@@ -141,41 +141,54 @@ public class MyMaze{
             do {//while queue is not empty
                 current = (int[]) solve.remove();//current takes from front of the queue
                 maze[current[0]][current[1]].setVisited(true);//mark current tile as visited
-                if (current[0] == maze.length - 1 && current[1] == maze[0].length - 1) {
-                    break;
-                }
-                if (current[0] - 1 >= 0) {//makes sure not out of bounds
-                    if (!maze[current[0] - 1][current[1]].getVisited() && !maze[current[0] - 1][current[1]].getBottom()) {
-                        temp = new int[2];
-                        temp[0] = current[0] - 1;
-                        temp[1] = current[1];
-                        solve.add(temp);//adds into temp array so coordinates dont get messed with when current is changed
-                    }
-                }
-                if (current[0] + 1 <= maze.length - 1) {//makes sure not out of bounds
-                    if (!maze[current[0] + 1][current[1]].getVisited() && !maze[current[0]][current[1]].getBottom()) {
+                if (current[0] == maze.length - 1 && current[1] == maze[0].length - 1) break;
+                //makes sure not out of bounds
+                //adds into temp array so coordinates dont get messed with when current is changed
+                if (((current[0] - 1) >= 0) && !maze[current[0] - 1][current[1]].getBottom() && !maze[current[0] - 1][current[1]].getVisited()) {
+                    temp = new int[2];
+                    temp[0] = current[0] - 1;
+                    temp[1] = current[1];
+                    solve.add(temp);//adds into temp array so coordinates dont get messed with when current is changed
+                    if (((current[0] + 1) <= (maze.length - 1)) && !maze[current[0] + 1][current[1]].getVisited() && !maze[current[0]][current[1]].getBottom()) {
                         temp = new int[2];
                         temp[0] = current[0] + 1;
                         temp[1] = current[1];
                         solve.add(temp);//adds into temp array so coordinates dont get messed with when current is changed
                     }
-                }
-                if (current[1] - 1 >= 0) {//makes sure not out of bounds
-                    if (!maze[current[0]][current[1] - 1].getVisited() && !maze[current[0]][current[1] - 1].getRight()) {
+                    if (((current[1] - 1) >= 0) && !maze[current[0]][current[1] - 1].getRight() && !maze[current[0]][current[1] - 1].getVisited()) {
                         temp = new int[2];
                         temp[0] = current[0];
                         temp[1] = current[1] - 1;
                         solve.add(temp);//adds into temp array so coordinates dont get messed with when current is changed
                     }
-                }
-                if (current[1] + 1 <= maze[0].length - 1) {//makes sure not out of bounds
-                    if (!maze[current[0]][current[1] + 1].getVisited() && !maze[current[0]][current[1]].getRight()) {
+                    if (((current[1] + 1) <= (maze[0].length - 1)) && !maze[current[0]][current[1]].getRight() && !maze[current[0]][current[1] + 1].getVisited()) {
                         temp = new int[2];
                         temp[0] = current[0];
                         temp[1] = current[1] + 1;
                         solve.add(temp);//adds into temp array so coordinates dont get messed with when current is changed
                     }
                 }
+                if (((current[0] + 1) <= (maze.length - 1)) && !maze[current[0] + 1][current[1]].getVisited() && !maze[current[0]][current[1]].getBottom()) {
+                    temp = new int[2];
+                    temp[0] = current[0] + 1;
+                    temp[1] = current[1];
+                    solve.add(temp);//adds into temp array so coordinates dont get messed with when current is changed
+                }
+                if (((current[1] - 1) >= 0) && !maze[current[0]][current[1] - 1].getRight() && !maze[current[0]][current[1] - 1].getVisited()) {
+                    temp = new int[2];
+                    temp[0] = current[0];
+                    temp[1] = current[1] - 1;
+                    solve.add(temp);//adds into temp array so coordinates dont get messed with when current is changed
+                }
+                if (((current[1] + 1) <= (maze[0].length - 1)) && !maze[current[0]][current[1]].getRight() && !maze[current[0]][current[1] + 1].getVisited()) {
+                    temp = new int[2];
+                    temp[0] = current[0];
+                    temp[1] = current[1] + 1;
+                    solve.add(temp);//adds into temp array so coordinates dont get messed with when current is changed
+                }
+                //makes sure not out of bounds
+                //makes sure not out of bounds
+                //makes sure not out of bounds
             } while (solve.length() > 0);
         }
         printMaze();
