@@ -22,7 +22,7 @@ public class MyMaze{
 
     /* make and initialize the maze */
     public static MyMaze makeMaze(int rows, int cols, int startRow, int endRow) {
-        Random rand = new Random();
+        Random random = new Random();
         MyMaze newMaze = new MyMaze(rows, cols, startRow, endRow);//initialize maze
         Stack1Gen<Integer[]> stack = new Stack1Gen<>();//initialize stack
         stack.push(new Integer[] {startRow,0});//push the start into stack
@@ -33,145 +33,28 @@ public class MyMaze{
             int currentCol = current[1];
             Integer[][] neighbors = new Integer[4][2];
             int nextEmpty = 0;
-            //account for edge cases
-            //top row
-            if (currentRow==0){
-                //top left
-                if (currentCol==0){
-                    if (!newMaze.maze[0][1].getVisited()){
-                        neighbors[nextEmpty] = new Integer[]{0, 1};
-                        nextEmpty++;
-                    }
-                    if (!newMaze.maze[1][0].getVisited()){
-                        neighbors[nextEmpty] = new Integer[]{1, 0};
-                        nextEmpty++;
-                    }
-                }
-                //top right
-                else if (currentCol == cols-1){
-                    if (!newMaze.maze[0][cols-2].getVisited()){
-                        neighbors[nextEmpty] = new Integer[]{0, cols-2};
-                        nextEmpty++;
-                    }
-                    if (!newMaze.maze[1][cols-1].getVisited()){
-                        neighbors[nextEmpty] = new Integer[]{1, cols-1};
-                        nextEmpty++;
-                    }
-                }
-                //top other
-                else{
-                    if (!newMaze.maze[1][currentCol].getVisited()){
-                        neighbors[nextEmpty] = new Integer[]{1, currentCol};
-                        nextEmpty++;
-                    }
-                    if (!newMaze.maze[0][currentCol+1].getVisited()){
-                        neighbors[nextEmpty] = new Integer[]{0, currentCol+1};
-                        nextEmpty++;
-                    }
-                    if (!newMaze.maze[0][currentCol-1].getVisited()){
-                        neighbors[nextEmpty] = new Integer[]{0, currentCol-1};
-                        nextEmpty++;
-                    }
-                }
+            if ((currentRow-1>=0) && !(newMaze.maze[currentRow-1][currentCol].getVisited())){
+                neighbors[nextEmpty] = new Integer[]{currentRow-1,currentCol};
+                nextEmpty++;
             }
-            //bottom row
-            else if (currentRow == rows-1){
-                //bottom left
-                if (currentCol == 0){
-                    if (!newMaze.maze[rows-1][1].getVisited()){
-                        neighbors[nextEmpty] = new Integer[]{rows-1, 1};
-                        nextEmpty++;
-                    }
-                    if (!newMaze.maze[rows-2][0].getVisited()){
-                        neighbors[nextEmpty] = new Integer[]{rows-2, 0};
-                        nextEmpty++;
-                    }
-                }
-                //bottom right
-                else if (currentCol == cols-1){
-                    if (!newMaze.maze[rows-1][cols-2].getVisited()){
-                        neighbors[nextEmpty] = new Integer[]{rows-1, cols-2};
-                        nextEmpty++;
-                    }
-                    if (!newMaze.maze[rows-2][cols-1].getVisited()){
-                        neighbors[nextEmpty] = new Integer[]{rows-2, cols-1};
-                        nextEmpty++;
-                    }
-                }
-                //other bottom
-                else{
-                    if (!newMaze.maze[rows-2][currentCol].getVisited()){
-                        neighbors[nextEmpty] = new Integer[]{rows-2, currentCol};
-                        nextEmpty++;
-                    }
-                    if (!newMaze.maze[rows-1][currentCol+1].getVisited()){
-                        neighbors[nextEmpty] = new Integer[]{rows-1, currentCol+1};
-                        nextEmpty++;
-                    }
-                    if (!newMaze.maze[rows-1][currentCol-1].getVisited()){
-                        neighbors[nextEmpty] = new Integer[]{rows-1, currentCol-1};
-                        nextEmpty++;
-                    }
-                }
+            if ((currentRow+1<newMaze.maze.length) && !(newMaze.maze[currentRow+1][currentCol].getVisited())){
+                neighbors[nextEmpty] = new Integer[]{currentRow+1,currentCol};
+                nextEmpty++;
             }
-            //middle rows cases
-            else{
-                //most left col
-                if (currentCol==0){
-                    if (!newMaze.maze[currentRow-1][0].getVisited()){
-                        neighbors[nextEmpty] = new Integer[]{currentRow-1, 0};
-                        nextEmpty++;
-                    }
-                    if (!newMaze.maze[currentRow+1][0].getVisited()){
-                        neighbors[nextEmpty] = new Integer[]{currentRow+1, 0};
-                        nextEmpty++;
-                    }
-                    if (!newMaze.maze[currentRow][1].getVisited()){
-                        neighbors[nextEmpty] = new Integer[]{currentRow, 1};
-                        nextEmpty++;
-                    }
-                }
-                //most right col
-                else if (currentCol==cols-1){
-                    if (!newMaze.maze[currentRow-1][currentCol].getVisited()){
-                        neighbors[nextEmpty] = new Integer[]{currentRow-1, currentCol};
-                        nextEmpty++;
-                    }
-                    if (!newMaze.maze[currentRow+1][currentCol].getVisited()){
-                        neighbors[nextEmpty] = new Integer[]{currentRow+1, currentCol};
-                        nextEmpty++;
-                    }
-                    if (!newMaze.maze[currentRow][currentCol-1].getVisited()){
-                        neighbors[nextEmpty] = new Integer[]{currentRow, currentCol-1};
-                        nextEmpty++;
-                    }
-                }
-                //all the cells that is not on the edge
-                else{
-                    if (!newMaze.maze[currentRow-1][currentCol].getVisited()){
-                        neighbors[nextEmpty] = new Integer[]{currentRow-1, currentCol};
-                        nextEmpty++;
-                    }
-                    if (!newMaze.maze[currentRow+1][currentCol].getVisited()){
-                        neighbors[nextEmpty] = new Integer[]{currentRow+1, currentCol};
-                        nextEmpty++;
-                    }
-                    if (!newMaze.maze[currentRow][currentCol+1].getVisited()){
-                        neighbors[nextEmpty] = new Integer[]{currentRow, currentCol+1};
-                        nextEmpty++;
-                    }
-                    if (!newMaze.maze[currentRow][currentCol-1].getVisited()){
-                        neighbors[nextEmpty] = new Integer[]{currentRow, currentCol-1};
-                        nextEmpty++;
-                    }
-                }
+            if ((currentCol-1>=0) && !(newMaze.maze[currentRow][currentCol-1].getVisited())){
+                neighbors[nextEmpty] = new Integer[]{currentRow,currentCol-1};
+                nextEmpty++;
+            }
+            if ((currentCol+1<newMaze.maze[0].length) && !(newMaze.maze[currentRow][currentCol+1].getVisited())){
+                neighbors[nextEmpty] = new Integer[]{currentRow,currentCol+1};
+                nextEmpty++;
             }
             //pop the cell if the cell does not have any available neighbors
             if (nextEmpty==0){
                 stack.pop();
             }
             else {
-                int chosen = rand.nextInt(nextEmpty);//select available neighbor with random
+                int chosen = random.nextInt(nextEmpty);//select available neighbor with random
                 Integer[] nextCell = neighbors[chosen];
                 newMaze.maze[nextCell[0]][nextCell[1]].setVisited(true);//mark neighbor as visited
                 stack.push(new Integer[]{nextCell[0], nextCell[1]});//push the selected nextCell's index in the stack
@@ -179,13 +62,13 @@ public class MyMaze{
                 if (nextCell[0]==currentRow-1){
                     newMaze.maze[nextCell[0]][nextCell[1]].setBottom(false);
                 }
-                else if (nextCell[0]==currentRow+1){
+                if (nextCell[0]==currentRow+1){
                     newMaze.maze[currentRow][currentCol].setBottom(false);
                 }
-                else if (nextCell[1]==currentCol-1){
+                if (nextCell[1]==currentCol-1){
                     newMaze.maze[nextCell[0]][nextCell[1]].setRight(false);
                 }
-                else if (nextCell[1]==currentCol-1){
+                if (nextCell[1]==currentCol+1){
                     newMaze.maze[currentRow][currentCol].setRight(false);
                 }
             }
