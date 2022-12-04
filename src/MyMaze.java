@@ -300,7 +300,27 @@ public class MyMaze{
 
 
     public static void main(String[] args){
-        MyMaze maze = new MyMaze(5,20,1,2);
-        maze.makeMaze(5,20,1,2).printMaze();
+        Scanner user = new Scanner(System.in);
+        System.out.println("Please enter settings of the maze(format: total rows, total columns, start row, end row. Separate them with a space.)");
+        System.out.println("Beware that total rows and columns must be between 5 and 20, and the index of rows start at 0");
+        String input = user.nextLine();
+        String[] inputs = input.split(" ");
+        int rows = Integer.parseInt(inputs[0]);
+        int cols = Integer.parseInt(inputs[1]);
+        int startRow = Integer.parseInt(inputs[2]);
+        int endRow = Integer.parseInt(inputs[3]);
+        while ( rows>20 || rows <5 || cols <5 || cols >20 || startRow < 0 || startRow >= rows || endRow < 0 || endRow >= rows){
+            System.out.println("Invalid inputs");
+            System.out.println("Please enter settings of the maze(format: total rows, total columns, start row, end row. Separate them with a space.)");
+            System.out.println("Be ware that total rows and columns must be between 5 and 20, and the index of rows start at 0");
+            input = user.nextLine();
+            inputs = input.split(" ");
+            rows = Integer.parseInt(inputs[0]);
+            cols = Integer.parseInt(inputs[1]);
+            startRow = Integer.parseInt(inputs[2]);
+            endRow = Integer.parseInt(inputs[3]);
+        }
+        MyMaze maze = new MyMaze(rows,cols,startRow,endRow);
+        maze.makeMaze(rows,cols,startRow,endRow).printMaze();
     }
 }
