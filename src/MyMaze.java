@@ -239,13 +239,12 @@ public class MyMaze{
                         output += "   |";
                     }
                 }
-                output += "\n";
             }
             else{
                 output += "| ";
                 for (int k=0;k<col;k++){
                     if (maze[j][k].getVisited()){
-                        output += " * ";
+                        output += "*";
                     }
                     else {
                         output += " ";
@@ -268,8 +267,8 @@ public class MyMaze{
                         output += "   |";
                     }
                 }
-                output += "\n";
             }
+            output += "\n";
         }
         System.out.println(output);
     }
@@ -328,7 +327,6 @@ public class MyMaze{
     public static void main(String[] args){
         MyMaze maze = new MyMaze(5,20,1,2);
         maze.makeMaze(5,20,1,2);
-
         maze.solveMaze();
         /*Make and solve maze */
     }
