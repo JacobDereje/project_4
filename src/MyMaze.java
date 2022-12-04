@@ -1,5 +1,5 @@
-// Names:
-// x500s:
+// Names: Brandon Cheng, Jacob Dereje
+// x500s: chen7381, derej006
 
 import java.util.Random;
 import java.util.Scanner;
