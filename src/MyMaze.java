@@ -131,10 +131,9 @@ public class MyMaze{
         System.out.println(output);
     }
 
-    /* TODO: Solve the maze using the algorithm found in the writeup. */
     public void solveMaze() {
         Q1Gen solution = new Q1Gen();
-        int[] current = new int[2];
+        int[] current;
         int[] tempval = new int[2];
         solution.add(tempval);
         if (solution.length() > 0) {
@@ -145,54 +144,46 @@ public class MyMaze{
                     if (current[1] == (maze[0].length - 1)) {
                         break;
                     }
-                if (((current[0] - 1) >= 0) && !maze[current[0] - 1][current[1]].getBottom() && !maze[current[0] - 1][current[1]].getVisited()) {
+                if (((current[0] - 1) >= 0) && !maze[current[0] - 1][current[1]].getBottom() && !maze[current[0] - 1][current[1]].getVisited()) { // establishes bounds
                     tempval = new int[2];
                     tempval[0] = current[0] - 1;
                     tempval[1] = current[1];
                     solution.add(tempval);
                     // appends into array so it works fluidly
-                    if (((current[0] + 1) <= (maze.length - 1)) && !maze[current[0] + 1][current[1]].getVisited() && !maze[current[0]][current[1]].getBottom()) {
+
+                        if (((current[1] + 1) <= (maze[0].length - 1)) && !maze[current[0]][current[1]].getRight() && !maze[current[0]][current[1] + 1].getVisited()) { // establishes bounds
+                            tempval = new int[2];
+                            tempval[0] = current[0];
+                            tempval[1] = current[1] + 1;
+                            solution.add(tempval);
+                    }
+                    if (((current[0] + 1) <= (maze.length - 1)) && !maze[current[0] + 1][current[1]].getVisited() && !maze[current[0]][current[1]].getBottom()) { // establishes bounds
                         tempval = new int[2];
                         tempval[0] = current[0] + 1;
                         tempval[1] = current[1];
                         solution.add(tempval);
+
                     }
-                    if (((current[1] - 1) >= 0) && !maze[current[0]][current[1] - 1].getRight() && !maze[current[0]][current[1] - 1].getVisited()) {
-                        tempval = new int[2];
-                        tempval[0] = current[0];
-                        tempval[1] = current[1] - 1;
-                        solution.add(tempval);
+                        if (((current[1] - 1) >= 0) && !maze[current[0]][current[1] - 1].getRight() && !maze[current[0]][current[1] - 1].getVisited()) { // establishes bounds
+                            tempval = new int[2];
+                            tempval[0] = current[0];
+                            tempval[1] = current[1] - 1;
+                            solution.add(tempval);
                     }
-                    if (((current[1] + 1) <= (maze[0].length - 1)) && !maze[current[0]][current[1]].getRight() && !maze[current[0]][current[1] + 1].getVisited()) {
-                        tempval = new int[2];
-                        tempval[0] = current[0];
-                        tempval[1] = current[1] + 1;
-                        solution.add(tempval);
-                    }
-                    if (((current[0] + 1) <= (maze.length - 1)) && !maze[current[0] + 1][current[1]].getVisited() && !maze[current[0]][current[1]].getBottom()) {
-                        tempval = new int[2];
-                        tempval[0] = current[0] + 1;
-                        tempval[1] = current[1];
-                        solution.add(tempval);
-                    }
-                } else if (((current[0] + 1) <= (maze.length - 1)) && !maze[current[0] + 1][current[1]].getVisited() && !maze[current[0]][current[1]].getBottom()) {
+                }
+                if (((current[0] + 1) <= (maze.length - 1)) && !maze[current[0] + 1][current[1]].getVisited() && !maze[current[0]][current[1]].getBottom()) { // establishes bounds
                     tempval = new int[2];
                     tempval[0] = current[0] + 1;
                     tempval[1] = current[1];
                     solution.add(tempval);
                 }
-                if (((current[1] - 1) >= 0) && !maze[current[0]][current[1] - 1].getRight() && !maze[current[0]][current[1] - 1].getVisited()) {
+                if (((current[1] - 1) >= 0) && !maze[current[0]][current[1] - 1].getRight() && !maze[current[0]][current[1] - 1].getVisited()) { // establishes bounds
                     tempval = new int[2];
                     tempval[0] = current[0];
                     tempval[1] = current[1] - 1;
                     solution.add(tempval);
-                    if (((current[1] + 1) <= (maze[0].length - 1)) && !maze[current[0]][current[1]].getRight() && !maze[current[0]][current[1] + 1].getVisited()) {
-                        tempval = new int[2];
-                        tempval[0] = current[0];
-                        tempval[1] = current[1] + 1;
-                        solution.add(tempval);
-                    }
-                } else if (((current[1] + 1) <= (maze[0].length - 1)) && !maze[current[0]][current[1]].getRight() && !maze[current[0]][current[1] + 1].getVisited()) {
+                }
+                if (((current[1] + 1) <= (maze[0].length - 1)) && !maze[current[0]][current[1]].getRight() && !maze[current[0]][current[1] + 1].getVisited()) { // establishes bounds
                     tempval = new int[2];
                     tempval[0] = current[0];
                     tempval[1] = current[1] + 1;
